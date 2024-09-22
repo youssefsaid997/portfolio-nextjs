@@ -1,9 +1,13 @@
 import React from "react";
+import HeroSection from "../components/HeroSection";
 
 function HomePage() {
   return (
     <main>
-      <section>Hero Section</section>
+      <HeroSection>
+        {"Youssef Said"}
+        {"Javascript Developer"}
+      </HeroSection>
       <section>Article</section>
       <section>Grid about skills</section>
       <section>carousel with the websites i worked at</section>
