@@ -20,10 +20,13 @@ export async function GET(request: NextRequest) {
 
 function createPagination(products: [], pageNumber: number, limit: number) {
   // page number
-  // const numberOfPages = Math.ceil(products.length / limit);
+  const numberOfPages = Math.ceil(products.length / limit);
   const skippedIndex = limit * pageNumber;
   const startIndex = (pageNumber - 1) * limit; // 1 => (1-1)*24 =0 , (2-1)*24 => 24;
 
   // based on number of page and products we will get the specific elements for each page
-  return products.slice(startIndex, skippedIndex);
+  return {
+    total_pages: numberOfPages,
+    products: products.slice(startIndex, skippedIndex),
+  };
 }

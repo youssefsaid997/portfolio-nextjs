@@ -7,16 +7,14 @@ import Pagination from "./Pagination";
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
-  console.log(page);
+  const [totalPages, setTotalPages] = useState(0);
 
   async function getProducts() {
     const data = await fetch(`api/products?page=${page}`).then((res) =>
       res.json()
     );
-    console.log(page);
-    console.log(data.data);
-
-    setProducts(data.data);
+    setProducts(data.data.products);
+    setTotalPages(data.data.total_pages);
   }
 
   function handleClick(page: number) {
@@ -36,7 +34,11 @@ function ProductList() {
           </div>
         ))}
       </div>
-      <Pagination page={page} handlePagination={handleClick} pagesNumber={4} />
+      <Pagination
+        page={page}
+        handlePagination={handleClick}
+        pagesNumber={totalPages}
+      />
     </div>
   );
 }
